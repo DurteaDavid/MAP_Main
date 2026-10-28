@@ -1,9 +1,8 @@
 package interpreter.model.stmt;
 
 import interpreter.model.PrgState;
-import interpreter.model.adt.IStack;
 
-public record ComStmt(IStmt first, IStmt second) implements IStmt {     // Statement rule 1
+public record CompStmt(IStmt first, IStmt second) implements IStmt {     // Statement rule 1
     @Override
     public PrgState execute(PrgState state) {
         state.getExeStack().push(second);

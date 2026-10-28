@@ -11,7 +11,7 @@ import interpreter.model.adt.MyStack;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ComStmtTest {
+class CompStmtTest {
 
     private PrgState state;
     private MyStack<IStmt> exeStack;
@@ -29,7 +29,7 @@ class ComStmtTest {
         IStmt stmt1 = new NopStmt();
         IStmt stmt2 = new AssignStmt("x", new interpreter.model.exp.ValueExp(new interpreter.model.value.IntValue(5)));
 
-        IStmt comStmt = new ComStmt(stmt1, stmt2);
+        IStmt comStmt = new CompStmt(stmt1, stmt2);
 
         assertTrue(exeStack.isEmpty(), "Stack should be empty before execution");
 
@@ -48,7 +48,7 @@ class ComStmtTest {
     void testToString() {
         IStmt stmt1 = new NopStmt();
         IStmt stmt2 = new NopStmt();
-        IStmt comStmt = new ComStmt(stmt1, stmt2);
+        IStmt comStmt = new CompStmt(stmt1, stmt2);
 
         assertEquals("(" + stmt1 + "; " + stmt2 + ")", comStmt.toString());
     }

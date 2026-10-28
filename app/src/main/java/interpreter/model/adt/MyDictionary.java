@@ -24,4 +24,6 @@ public class MyDictionary<K, V> implements IDictionary<K, V> {
         if(!dictionary.containsKey(key)) throw new ADTException("Key does not exist!");
         dictionary.replace(key, value);
     }
+
+    @Override public String toString() { return dictionary.toString(); }
 }

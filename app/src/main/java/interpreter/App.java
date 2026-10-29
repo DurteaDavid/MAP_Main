@@ -4,39 +4,63 @@ import interpreter.controller.Controller;
 import interpreter.model.PrgState;
 import interpreter.model.adt.*;
 import interpreter.model.stmt.IStmt;
-import interpreter.model.value.IValue;
 import interpreter.repository.IRepository;
 import interpreter.repository.Repository;
 import interpreter.view.Examples;
+import java.util.Scanner;
 
-import java.util.Objects;
 
 public class App {
     public static void main(String[] args) {
-
+        Scanner scanner = new Scanner(System.in);
         IStmt[] examples = { Examples.EX1, Examples.EX2, Examples.EX3 };
 
-        int id;
-        id = Integer.parseInt(args[0]);
+        while (true) {
+            System.out.println("\n=== TOY LANGUAGE INTERPRETER MENU ===");
+            for (int i = 0; i < examples.length; i++) {
+                System.out.println((i + 1) + ". Run Example " + (i + 1));
+            }
+            System.out.println("0. Exit");
+            System.out.print("Enter your choice: ");
 
-        IStmt selectedProgram = examples[id-1];
+            String input = scanner.nextLine();
 
-        PrgState prgState = new PrgState(
-                new MyStack<>(),
-                new MyDictionary<>(),
-                new MyList<>(),
-                selectedProgram
-        );
+            try {
+                int choice = Integer.parseInt(input.trim());
 
-        IRepository repo = new Repository(prgState);
-        Controller controller = new Controller(repo, true);
+                if (choice == 0) {
+                    System.out.println("Exiting.");
+                    break;
+                }
 
-        try {
-            System.out.println("Starting execution...");
-            controller.allStep();
-            System.out.println("Execution finished successfully!");
-        } catch (Exception e) {
-            System.err.println("Execution error: " + e.getMessage());
+                if (choice < 1 || choice > examples.length) {
+                    System.out.println("Invalid choice! Please select a valid option from the menu.");
+                    continue;
+                }
+
+                IStmt selectedProgram = examples[choice - 1];
+
+                PrgState prgState = new PrgState(
+                        new MyStack<>(),
+                        new MyDictionary<>(),
+                        new MyList<>(),
+                        selectedProgram
+                );
+
+                IRepository repo = new Repository(prgState);
+                Controller controller = new Controller(repo, true);
+
+                System.out.println("\nStarting execution of Example " + choice + "...");
+                controller.allStep();
+                System.out.println("Execution finished.");
+
+            } catch (NumberFormatException e) {
+                System.err.println("Invalid input! Please enter a number.");
+            } catch (Exception e) {
+                System.err.println("Execution error: " + e.getMessage());
+            }
         }
+
+        scanner.close();
     }
 }

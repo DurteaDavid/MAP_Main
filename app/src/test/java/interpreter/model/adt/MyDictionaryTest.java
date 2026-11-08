@@ -4,6 +4,8 @@ import interpreter.exceptions.ADTException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MyDictionaryTest {
@@ -59,5 +61,36 @@ class MyDictionaryTest {
     void testUpdateNotFound() {
         assertThrows(ADTException.class, () -> dictionary.update("nonexistent", 75),
                 "Updating a non-existent key should throw ADTException");
+    }
+
+    @Test
+    void testRemove() throws ADTException {
+        dictionary.put("key", 2);
+        dictionary.remove("key");
+        assertFalse(dictionary.isDefined("key"));
+    }
+
+    @Test
+    void testRemoveThrows() throws ADTException {
+        assertThrows(ADTException.class, () -> dictionary.remove("key"));
+    }
+
+    @Test
+    void testToMap() throws ADTException {
+        dictionary.put("key1",1);
+        dictionary.put("key2",2);
+
+        Map<String, Integer> result = dictionary.toMap();
+        assertEquals(2, result.size());
+        assertEquals(1, result.get("key1"));
+        assertEquals(2, result.get("key2"));
+    }
+
+    @Test
+    void testToMapImmutable() throws ADTException {
+        dictionary.put("key1",1);
+
+        Map<String, Integer> result = dictionary.toMap();
+        assertThrows(UnsupportedOperationException.class, () -> result.put("key2",2));
     }
 }

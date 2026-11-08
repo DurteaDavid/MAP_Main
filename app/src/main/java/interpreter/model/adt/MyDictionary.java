@@ -25,5 +25,14 @@ public class MyDictionary<K, V> implements IDictionary<K, V> {
         dictionary.replace(key, value);
     }
 
+    @Override public void remove(K key) throws ADTException {
+        if(!dictionary.containsKey(key)) throw new ADTException(("Key does not exist!"));
+        dictionary.remove(key);
+    }
+
+    @Override public Map<K, V> toMap() {
+        return Map.copyOf(dictionary);
+    }
+
     @Override public String toString() { return dictionary.toString(); }
 }

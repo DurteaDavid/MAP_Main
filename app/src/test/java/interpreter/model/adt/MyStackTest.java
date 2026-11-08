@@ -4,6 +4,8 @@ import interpreter.exceptions.ADTException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MyStackTest {
@@ -40,6 +42,15 @@ class MyStackTest {
     void testPopEmptyStackException() {
         assertThrows(ADTException.class, () -> stack.pop(),
                 "Popping from an empty stack should throw ADTException");
+    }
+
+    @Test
+    void testToList() {
+        stack.push("A");
+        stack.push("B");
+
+        List<String> result = stack.toList();
+        assertEquals("B", result.getFirst());
     }
 
     @Test

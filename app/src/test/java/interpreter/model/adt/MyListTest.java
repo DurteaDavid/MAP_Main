@@ -4,6 +4,8 @@ import interpreter.exceptions.ADTException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MyListTest {
@@ -55,5 +57,14 @@ class MyListTest {
                 "Getting with an index equal to size should throw ADTException (out of bounds)");
         assertThrows(ADTException.class, () -> list.get(5),
                 "Getting with an index greater than size should throw ADTException");
+    }
+
+    @Test
+    void testToList() {
+        list.add("A");
+        list.add("B");
+
+        List<String> result = list.toList();
+        assertEquals("A", result.getFirst());
     }
 }

@@ -14,7 +14,7 @@ class ArithExpTest {
     private final IDictionary<String, IValue> symTable = new MyDictionary<>();
     private static IExp num(int n) { return new ValueExp(new IntValue(n)); }
 
-    private static class NonIntValueExp implements IExp {
+    static class NonIntValueExp implements IExp {
         @Override
         public IValue eval(IDictionary<String, IValue> symTable) {
             return new BoolValue(true);

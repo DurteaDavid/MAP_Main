@@ -28,6 +28,18 @@ public class PrgState {
                 new MyDictionary<>(), program);
     }
 
+    public String toLogString() {
+        var sb = new StringBuilder();
+        sb.append("ExeStack:\n");
+        exeStack.toList().forEach(s -> sb.append(s).append('\n'));
+        sb.append("SymTable:\n");
+        symTable.toMap().forEach((k,v) -> sb.append(k).append(" ---> ").append(v).append('\n'));
+        sb.append("Out:\n");
+        out.toList().forEach((v -> sb.append(v).append('\n')));
+        sb.append("FileTable:\n");
+        fileTable.toMap().keySet().forEach(f -> sb.append(f.val()).append('\n'));
+        return sb.toString();
+    }
 
     public IStack<IStmt> getExeStack() {
         return exeStack;

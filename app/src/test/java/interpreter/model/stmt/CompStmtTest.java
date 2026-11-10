@@ -20,7 +20,7 @@ class CompStmtTest {
     void setUp() throws MyException {
         exeStack = new MyStack<>();
         IDictionary<String, interpreter.model.value.IValue> symTable = new MyDictionary<>();
-        state = new PrgState(exeStack, symTable, new MyList<>(), new NopStmt());
+        state = new PrgState(exeStack, symTable, new MyList<>(), new MyDictionary<>(),new NopStmt());
     }
 
     @Test

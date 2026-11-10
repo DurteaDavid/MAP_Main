@@ -26,7 +26,7 @@ class IfStmtTest {
     void setUp() throws MyException {
         exeStack = new MyStack<>();
         symTable = new MyDictionary<>();
-        state = new PrgState(exeStack, symTable, new MyList<>(), new NopStmt());
+        state = new PrgState(exeStack, symTable, new MyList<>(), new MyDictionary<>(),new NopStmt());
     }
 
     @Test

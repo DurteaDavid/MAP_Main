@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class ControllerTest {
     private static PrgState run(IStmt program) throws MyException {
         PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(),
-                new MyList<>(), program);
+                new MyList<>(), new MyDictionary<>(),program);
         new Controller(new Repository(state), false).allStep(); // display off
         return state;
     }

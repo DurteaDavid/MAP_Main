@@ -18,7 +18,7 @@ class NopStmtTest {
     @BeforeEach
     void setUp() throws MyException {
         IDictionary<String, interpreter.model.value.IValue> symTable = new MyDictionary<>();
-        state = new PrgState(new MyStack<>(), symTable, new MyList<>(), new NopStmt());
+        state = new PrgState(new MyStack<>(), symTable, new MyList<>(), new MyDictionary<>(),new NopStmt());
     }
 
     @Test

@@ -25,7 +25,7 @@ class PrintStmtTest {
     void setUp() throws MyException {
         outList = new MyList<>();
         IDictionary<String, IValue> symTable = new MyDictionary<>();
-        state = new PrgState(new MyStack<>(), symTable, outList, new NopStmt());
+        state = new PrgState(new MyStack<>(), symTable, outList, new MyDictionary<>(),new NopStmt());
     }
 
     @Test

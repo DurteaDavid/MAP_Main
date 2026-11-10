@@ -44,6 +44,7 @@ public class App {
                         new MyStack<>(),
                         new MyDictionary<>(),
                         new MyList<>(),
+                        new MyDictionary<>(),
                         selectedProgram
                 );
 

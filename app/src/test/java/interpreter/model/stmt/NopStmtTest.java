@@ -4,10 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import interpreter.exceptions.MyException;
 import interpreter.model.PrgState;
-import interpreter.model.adt.IDictionary;
-import interpreter.model.adt.MyDictionary;
-import interpreter.model.adt.MyList;
-import interpreter.model.adt.MyStack;
+import interpreter.model.adt.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +15,7 @@ class NopStmtTest {
     @BeforeEach
     void setUp() throws MyException {
         IDictionary<String, interpreter.model.value.IValue> symTable = new MyDictionary<>();
-        state = new PrgState(new MyStack<>(), symTable, new MyList<>(), new MyDictionary<>(),new NopStmt());
+        state = new PrgState(new MyStack<>(), symTable, new MyList<>(), new MyDictionary<>(),new MyHeap(),new NopStmt());
     }
 
     @Test

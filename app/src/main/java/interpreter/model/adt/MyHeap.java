@@ -49,14 +49,6 @@ public class MyHeap implements IHeap{
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Heap: \n");
-        for(Map.Entry<Integer, IValue> entry : heap.entrySet()) {
-            sb.append(entry.getKey())
-                    .append(" -> ")
-                    .append(entry.getValue().toString())
-                    .append("\n");
-        }
-        return sb.toString();
+        return heap.toString();
     }
 }

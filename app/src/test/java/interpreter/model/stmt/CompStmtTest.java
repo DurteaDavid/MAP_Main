@@ -4,10 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import interpreter.exceptions.MyException;
 import interpreter.model.PrgState;
-import interpreter.model.adt.IDictionary;
-import interpreter.model.adt.MyDictionary;
-import interpreter.model.adt.MyList;
-import interpreter.model.adt.MyStack;
+import interpreter.model.adt.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +17,7 @@ class CompStmtTest {
     void setUp() throws MyException {
         exeStack = new MyStack<>();
         IDictionary<String, interpreter.model.value.IValue> symTable = new MyDictionary<>();
-        state = new PrgState(exeStack, symTable, new MyList<>(), new MyDictionary<>(),new NopStmt());
+        state = new PrgState(exeStack, symTable, new MyList<>(), new MyDictionary<>(), new MyHeap(),new NopStmt());
     }
 
     @Test

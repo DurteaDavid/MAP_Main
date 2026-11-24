@@ -5,10 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import interpreter.exceptions.MyException;
 import interpreter.exceptions.StatementException;
 import interpreter.model.PrgState;
-import interpreter.model.adt.IDictionary;
-import interpreter.model.adt.MyDictionary;
-import interpreter.model.adt.MyList;
-import interpreter.model.adt.MyStack;
+import interpreter.model.adt.*;
 import interpreter.model.exp.IExp;
 import interpreter.model.exp.ValueExp;
 import interpreter.model.value.BoolValue;
@@ -26,7 +23,7 @@ class IfStmtTest {
     void setUp() throws MyException {
         exeStack = new MyStack<>();
         symTable = new MyDictionary<>();
-        state = new PrgState(exeStack, symTable, new MyList<>(), new MyDictionary<>(),new NopStmt());
+        state = new PrgState(exeStack, symTable, new MyList<>(), new MyDictionary<>(), new MyHeap(),new NopStmt());
     }
 
     @Test

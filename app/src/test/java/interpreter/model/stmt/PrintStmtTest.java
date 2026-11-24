@@ -4,11 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import interpreter.exceptions.MyException;
 import interpreter.model.PrgState;
-import interpreter.model.adt.IDictionary;
-import interpreter.model.adt.IList;
-import interpreter.model.adt.MyDictionary;
-import interpreter.model.adt.MyList;
-import interpreter.model.adt.MyStack;
+import interpreter.model.adt.*;
 import interpreter.model.exp.IExp;
 import interpreter.model.exp.ValueExp;
 import interpreter.model.value.IValue;
@@ -25,7 +21,7 @@ class PrintStmtTest {
     void setUp() throws MyException {
         outList = new MyList<>();
         IDictionary<String, IValue> symTable = new MyDictionary<>();
-        state = new PrgState(new MyStack<>(), symTable, outList, new MyDictionary<>(),new NopStmt());
+        state = new PrgState(new MyStack<>(), symTable, outList, new MyDictionary<>(), new MyHeap(),new NopStmt());
     }
 
     @Test

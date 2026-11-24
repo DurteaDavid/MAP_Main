@@ -6,26 +6,29 @@ import interpreter.model.value.IValue;
 import interpreter.model.value.StringValue;
 
 import java.io.BufferedReader;
+import java.util.TreeMap;
 
 public class PrgState {
     private IStack<IStmt> exeStack;
     private IDictionary<String, IValue> symTable;
     private IList<IValue> out;
     private IDictionary<StringValue, BufferedReader> fileTable;
+    private IHeap heap;
     private final IStmt originalProgram;
 
-    public PrgState (IStack<IStmt> exeStack, IDictionary<String,IValue> symTable, IList<IValue> out, IDictionary<StringValue, BufferedReader> fileTable, IStmt program) {
+    public PrgState (IStack<IStmt> exeStack, IDictionary<String,IValue> symTable, IList<IValue> out, IDictionary<StringValue, BufferedReader> fileTable, IHeap heap,IStmt program) {
         this.exeStack = exeStack;
         this.symTable = symTable;
         this.out = out;
         this.fileTable = fileTable;
+        this.heap = heap;
         this.originalProgram = program;
         exeStack.push(program);
     }
 
     public static PrgState of(IStmt program) {
         return new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(),
-                new MyDictionary<>(), program);
+                new MyDictionary<>(), new MyHeap(), program);
     }
 
     public String toLogString() {
@@ -38,6 +41,8 @@ public class PrgState {
         out.toList().forEach((v -> sb.append(v).append('\n')));
         sb.append("FileTable:\n");
         fileTable.toMap().keySet().forEach(f -> sb.append(f.val()).append('\n'));
+        sb.append("Heap:\n");
+        new TreeMap<>(heap.getContent()).forEach((a, v) -> sb.append(a).append(" --> ").append(v).append('\n'));
         return sb.toString();
     }
 
@@ -69,11 +74,16 @@ public class PrgState {
 
     public void setFileTable(IDictionary<StringValue, BufferedReader> fileTable) { this.fileTable = fileTable; }
 
+    public IHeap getHeap() { return heap; }
+
+    public void setHeap(IHeap heap) { this.heap = heap; }
+
     public String toString() {
         return "ProgramState {" + "\n" +
                 "ExecutionStack = " + exeStack + "\n" +
                 "SymbolTable = " + symTable + "\n" +
                 "Out = " + out + "\n" +
+                "Heap = " + heap + "\n" +
                 "OriginalProgram = " + originalProgram + "\n" +
                 "}";
     }

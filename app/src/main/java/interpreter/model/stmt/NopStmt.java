@@ -10,5 +10,5 @@ public record NopStmt() implements IStmt {
     }
 
     @Override
-    public String toString() { return "Bump! This operation does nothing..."; }
+    public String toString() { return "nop"; }
 }

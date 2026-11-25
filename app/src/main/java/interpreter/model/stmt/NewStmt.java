@@ -19,6 +19,7 @@ public record NewStmt(String varName, IExp exp) implements IStmt {
         if (!value.getType().equals(ref.locationType()))
             throw new StatementException("new: " + exp + " has type " + value.getType() + ", expected " + ref.locationType());
         int address = state.getHeap().allocate(value);
+        symTable.update(varName, new RefValue(address, ref.locationType()));
         return state;
     }
     @Override
